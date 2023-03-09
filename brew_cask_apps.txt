@@ -1,0 +1,15 @@
+firefox
+intellij-idea
+iterm2
+microsoft-teams
+stats
+alt-tab
+rectangle
+signal
+discord
+vlc
+blackhole-2ch
+sap/sapmachine/sapmachine11-jdk
+dropbox
+keepassxc
+postman

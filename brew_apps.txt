@@ -1,0 +1,7 @@
+awscli
+mariadb
+jq
+git
+vim
+jenv
+ant

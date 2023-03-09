@@ -1,0 +1,7 @@
+alias ll='ls -alF'
+
+alias nowtime='date + "%T"'
+alias nowdate='date + "%d-%m-%Y"'
+
+alias ide='open -a "/Applications/IntelliJ IDEA.app"'
+alias postman='open -a "/Applications/Postman.app"'
