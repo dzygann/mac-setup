@@ -108,12 +108,14 @@ a `.java-version` file which contains the selected version. If `jenv` finds that
 To auto-start the MariaDB the `bootstrap.sh` script uses the `brew services start mariadb`. Now the MariaDB is running
 even if the machine restarts.
 
+### Create Schema
 Connect to the MariaDB server via `sudo mariadb -uroot -p` and create a new schema:
 
 ```mariadb
 CREATE SCHEMA `testdb` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
 ```
 
+### Create User and Privileges
 Now, let's create a user and give him some rights
 
 ```mariadb
@@ -126,6 +128,9 @@ Finally, it's necessary to flush the privileges to take effect of the changes:
 ```mariadb
 FLUSH PRIVILEGES;
 ```
+
+
+### Drop Schema
 
 ### Optional step
 

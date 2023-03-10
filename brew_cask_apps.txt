@@ -13,3 +13,5 @@ sap/sapmachine/sapmachine11-jdk
 dropbox
 keepassxc
 postman
+obs
+docker
