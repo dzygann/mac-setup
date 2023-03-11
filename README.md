@@ -61,21 +61,47 @@ try to use the following command:
 /usr/libexec/java_home -V
 ```
 
-The output shows the location `/Library/Java/JavaVirtualMachines/sapmachine-11.jdk/Contents/Home`. The output can be
+The output could show the location `/Library/Java/JavaVirtualMachines/sapmachine-11.jdk/Contents/Home`. The output can
+be
 used to add this version to `jenv` with this command:
 
 ```shell
 jenv add /Library/Java/JavaVirtualMachines/sapmachine-11.jdk/Contents/Home
 ```
 
-To check if the version is installed correctly use this command `jenv versions`. To verify if everything is fine
-run `jenv doctor`. You will get an output like that:
+The openjdk installed by homebrew points to a different location. You will find it here `/opt/homebrew/opt/`. Run this
+command to add it to `jenv`:
+
+```shell
+jenv add /opt/homebrew/opt/openjdk
+```
+
+You can also add older versions from `openjdk` like the version 11 by using the command:
+
+```shell
+jenv add /opt/homebrew/opt/openjdk@11
+```
+
+To check if the version is installed correctly use this command `jenv versions`. Depend on the installations steps you
+did, the output should print sth like:
+
+```shell
+* system (set by /Users/denis/.jenv/version)
+  11.0
+  11.0.18
+  openjdk64-11.0.18
+```
+
+To verify if everything is fine run `jenv doctor`. You will get an output like that:
 
 ```shell
 [OK]	No JAVA_HOME set
 [OK]	Java binaries in path are jenv shims
 [OK]	Jenv is correctly loaded
 ```
+
+If you see some `[ERROR]` instead of the `[OK]` try `.source ~/.zshrc` or reopen your shell, then the `[ERROR]`
+message/s should disappear.
 
 No `JAVA_HOME` set is not good, even if the output says it is `[OK]`. To set the env variable we need to enable the
 export plugin by run `jenv enable-plugin export`. Now, we can execute the `jenv doctor` command again. The output looks
@@ -109,6 +135,7 @@ To auto-start the MariaDB the `bootstrap.sh` script uses the `brew services star
 even if the machine restarts.
 
 ### Create Schema
+
 Connect to the MariaDB server via `sudo mariadb -uroot -p` and create a new schema:
 
 ```mariadb
@@ -116,6 +143,7 @@ CREATE SCHEMA `testdb` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
 ```
 
 ### Create User and Privileges
+
 Now, let's create a user and give him some rights
 
 ```mariadb
@@ -128,7 +156,6 @@ Finally, it's necessary to flush the privileges to take effect of the changes:
 ```mariadb
 FLUSH PRIVILEGES;
 ```
-
 
 ### Drop Schema
 
