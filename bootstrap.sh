@@ -8,14 +8,6 @@ else
   echo ".zshrc and .zsh_aliases are not overridden!"
 fi
 
-#read -q "REPLY?Install brew [Y/n] " -r
-#echo
-#if [[ $REPLY =~ ^[Yy]$ ]]; then
-#  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-#else
-#  echo "Skipped Homebrew installation"
-#fi
-
 brew_location="which brew"
 if [ "$brew_location" = "" ]; then
   echo '/bin/bash -c $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)'
