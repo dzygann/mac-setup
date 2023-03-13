@@ -3,7 +3,7 @@
 This is a WIP and I don't know when I'm done :D
 
 This is a repository for my macOS setup. It fits to my requirements and can be a helpful guideline for you, too. If
-something doesn't fit to your setup feel free to make adujustments or if you find a more general solution, you are also
+something doesn't fit to your setup feel free to make adjustments or if you find a more general solution, you are also
 invited to make a pull request.
 
 ## Objectives
@@ -22,16 +22,17 @@ WIP
 
 WIP
 
+### Caution
+
+If you have already a `.zshrc` file in the home directory, it could be overridden. For safety reasons, you should create
+a backup of the affected files.
+
 ## How to Use
 
 The `bootstrap.sh` script is the starting point. It should have execution rights to be able to do his work. The script
 will copy the `.zsh_aliases` and the `.zshrc` file to the home directory. The `brew` will start the job and install
 every application defined in the `brew_apps.txt` file and in the `brew_cask_apps.txt` file. Then `brew` is used again to
 run the MariaDB as a service, so that we can instantly use it.
-
-### Caution
-
-If you have already a `.zshrc` file in the home directory, it will be overriden.
 
 ## iTerm2
 
