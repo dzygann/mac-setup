@@ -54,6 +54,31 @@ else
   echo "Skipped Maria service"
 fi
 
+read -q "REPLY?Force rebuild of zcompdump [Y/n] " -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  echo "rm -f ~/.zcompdump; compinit"
+  rm -f ~/.zcompdump; compinit
+else
+  echo "Skipped rebuild of zcompdump"
+fi
+
+read -q "REPLY?Set up Docker zsh autocompletion [Y/n] " -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  echo "etc=/Applications/Docker.app/Contents/Resources/etc"
+  etc=/Applications/Docker.app/Contents/Resources/etc
+  echo 'ln -s $etc/docker.zsh-completion $(brew --prefix)/share/zsh/site-functions/_docker'
+  ln -s $etc/docker.zsh-completion $(brew --prefix)/share/zsh/site-functions/_docker
+  echo 'ln -s $etc/docker-machine.zsh-completion $(brew --prefix)/share/zsh/site-functions/_docker-machine'
+  ln -s $etc/docker-machine.zsh-completion $(brew --prefix)/share/zsh/site-functions/_docker-machine
+  echo 'ln -s $etc/docker-compose.zsh-completion $(brew --prefix)/zsh/site-functions/_docker-compose'
+  ln -s $etc/docker-compose.zsh-completion $(brew --prefix)/zsh/site-functions/_docker-compose
+else
+  echo "Skipped rebuild of zcompdump"
+fi
+
+
 # source files
 source "/Users/$USER/.zprofile"
 source "/Users/$USER/.zshrc"

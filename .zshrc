@@ -11,7 +11,7 @@ fi
 # add autocompletion to brew
 if type brew &>/dev/null
 then
-	FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+	FPATH="$(brew --prefix)/share/zsh-completions:$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 fi
 
 # add autocompletion

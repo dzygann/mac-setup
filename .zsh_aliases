@@ -5,3 +5,4 @@ alias nowdate='date + "%d-%m-%Y"'
 
 alias ide='open -a "/Applications/IntelliJ IDEA.app"'
 alias postman='open -a "/Applications/Postman.app"'
+alias atom='open -a "/Applications/Atom.app"'
