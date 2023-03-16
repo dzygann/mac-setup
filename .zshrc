@@ -14,9 +14,6 @@ then
 	FPATH="$(brew --prefix)/share/zsh-completions:$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 fi
 
-# add autocompletion
-autoload -Uz compinit && compinit
-
 # activate jenv
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
@@ -29,4 +26,8 @@ export NVM_DIR="$HOME/.nvm"
 
 # Load Angular CLI autocompletion
 source <(ng completion script)
+
+# add autocompletion
+autoload -Uz compinit && compinit
+
 

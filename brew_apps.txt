@@ -2,6 +2,7 @@ angular-cli
 ant
 awscli
 eksctl
+gedit
 git
 imagemagick
 jenv

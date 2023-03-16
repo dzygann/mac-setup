@@ -1,5 +1,4 @@
 alt-tab
-atom
 blackhole-2ch
 discord
 docker

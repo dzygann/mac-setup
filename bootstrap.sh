@@ -58,7 +58,8 @@ read -q "REPLY?Force rebuild of zcompdump [Y/n] " -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   echo "rm -f ~/.zcompdump; compinit"
-  rm -f ~/.zcompdump; compinit
+  rm -f ~/.zcompdump;
+  compinit
 else
   echo "Skipped rebuild of zcompdump"
 fi
@@ -75,7 +76,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   echo 'ln -s $etc/docker-compose.zsh-completion $(brew --prefix)/zsh/site-functions/_docker-compose'
   ln -s $etc/docker-compose.zsh-completion $(brew --prefix)/zsh/site-functions/_docker-compose
 else
-  echo "Skipped rebuild of zcompdump"
+  echo "Skipped zsh autocompletion"
 fi
 
 
