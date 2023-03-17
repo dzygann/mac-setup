@@ -54,16 +54,6 @@ else
   echo "Skipped Maria service"
 fi
 
-read -q "REPLY?Force rebuild of zcompdump [Y/n] " -r
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-  echo "rm -f ~/.zcompdump; compinit"
-  rm -f ~/.zcompdump;
-  compinit
-else
-  echo "Skipped rebuild of zcompdump"
-fi
-
 read -q "REPLY?Set up Docker zsh autocompletion [Y/n] " -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -78,6 +68,27 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 else
   echo "Skipped zsh autocompletion"
 fi
+
+# read -q "REPLY?Force rebuild of zcompdump [Y/n] " -r
+# echo
+# if [[ $REPLY =~ ^[Yy]$ ]]; then
+#  echo "rm -f ~/.zcompdump; compinit"
+#  rm -f ~/.zcompdump;
+#  compinit
+# else
+#  echo "Skipped rebuild of zcompdump"
+# fi
+
+read -q "REPLY?Install oh-my-zsh [Y/n] " -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  echo 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattend
+  cp ~/.zshrc.pre-oh-my-zsh.zsh >> ~/.oh-my-zsh/custom/mac-setup
+else
+  echo "Skipped oh-my-zsh installation"
+fi
+
 
 
 # source files
