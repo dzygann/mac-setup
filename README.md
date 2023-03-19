@@ -51,6 +51,17 @@ the `Profiles -> Colors` tab. On the bottom right you can decide which one you l
 One last thing I do is to change the font size. You can find the setting in the `Profile -> Text` tab. It's located
 under the Font label. Change the size value to whatever fits to you.
 
+### Additional configuration for oh-my-zsh
+
+If you are using `oh-my-zsh` you could want to use `zsh-autosuggestion`. This tool predicts your next commands you 
+want to enter to the terminal. For very long commands it could be that you want to change the some arguments. Or 
+you want to remove some words from the command in a easy way. For that reason, you have to change `Key Mappings`.
+You can find them under the `Settings -> Profiles -> Keys -> Key Mapping`. There you have to search for the 
+`⌥ ←` and `⌥→` Mappings. Double click on the backword key mapping and change the `Esc+` to `b` and for the forward 
+key mapping to `f`. Now it is possible to jump forward and backwards by using the shortcuts for words in the 
+predicted command. 
+
+
 ## jenv
 
 `jenv` is a tool to handle different versions of Java. In Linux it's way more easy to handle different version,
