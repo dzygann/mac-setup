@@ -199,6 +199,16 @@ PORT    STATE SERVICE
 80/tcp  open  http
 ```
 
+To get a full list of devices in the network in a fast manner you could use the `-sL` argument. The response contains a
+list of names and the IP addresses in parentheses if it could find a device. Otherwise, it returns the IP only:
+
+```shell
+...
+Nmap scan report for my-device (192.168.178.2) # finding
+Nmap scan report for 192.168.178.3 # nothing found
+...
+```
+
 If you want to act more quietly, you can add the `-sS` arguments. These arguments change the analysis behaviour of nmap,
 so that it doesn't complete the 3-way-handshake. It seems for the destination device, that send SYN/ACK signal bit to
 the source device get lost. Run the command `sudo nmap -sS 192.168.178.2` and you will get a similar result as above.
@@ -226,18 +236,8 @@ OS detection performed. Please report any incorrect results at https://nmap.org/
 Nmap done: 1 IP address (1 host up) scanned in 4.33 seconds
 ```
 
-To get a full list of devices in the network in a fast manner you could use the `-sL` argument. The response contains a
-list of names and the IP addresses in parentheses if it could find a device. Otherwise, the it returns the IP only:
-
-```shell
-...
-Nmap scan report for my-device (192.168.178.2) # finding
-Nmap scan report for 192.168.178.161 # nothing
-...
-```
-
 Another feature of `nmap` is to figure out the version of the service which is running on the device. It doesn't work
-for all services, but it does a good work for that one it knows. This is an example response of `scanme.nmap.org`: 
+for all services, but it does a good work for that one it knows. This is an example response of `scanme.nmap.org`:
 
 ```shell
 nmap -sV scanme.nmap.org
@@ -261,4 +261,9 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 46.99 seconds
 ```
 
-In this way you could use the nmap to find outdated versions of a service and update them accordingly. 
+In this way you could use the nmap to find outdated versions of a service and update them accordingly.
+
+The most time-consuming scanning is with the  `-A` option. This scan contains the OS detection, version detection,
+script scanning, and traceroute. Try this command and check out the response `nmap -A scanme.nmap.org`
+
+
