@@ -8,6 +8,7 @@ imagemagick
 jenv
 jq
 mariadb
+nmap
 nvm
 openjdk
 vim
