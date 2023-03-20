@@ -53,14 +53,13 @@ under the Font label. Change the size value to whatever fits to you.
 
 ### Additional configuration for oh-my-zsh
 
-If you are using `oh-my-zsh` you could want to use `zsh-autosuggestion`. This tool predicts your next commands you 
-want to enter to the terminal. For very long commands it could be that you want to change the some arguments. Or 
+If you are using `oh-my-zsh` you could want to use `zsh-autosuggestion`. This tool predicts your next commands you
+want to enter to the terminal. For very long commands it could be that you want to change the some arguments. Or
 you want to remove some words from the command in a easy way. For that reason, you have to change `Key Mappings`.
-You can find them under the `Settings -> Profiles -> Keys -> Key Mapping`. There you have to search for the 
-`⌥ ←` and `⌥→` Mappings. Double click on the backword key mapping and change the `Esc+` to `b` and for the forward 
-key mapping to `f`. Now it is possible to jump forward and backwards by using the shortcuts for words in the 
-predicted command. 
-
+You can find them under the `Settings -> Profiles -> Keys -> Key Mapping`. There you have to search for the
+`⌥ ←` and `⌥→` Mappings. Double click on the backword key mapping and change the `Esc+` to `b` and for the forward
+key mapping to `f`. Now it is possible to jump forward and backwards by using the shortcuts for words in the
+predicted command.
 
 ## jenv
 
@@ -174,9 +173,92 @@ FLUSH PRIVILEGES;
 ### Optional step
 
 Optionally, you can run `sudo mysql_secure_installation`. It will ensure, that you at least was asked to configure the
-right things. 
+right things.
 
+## nmap
 
+The Network Mapper (nmap) is a tool to discover the network. It scans IP addresses and its ports and creates a report
+at the end. By analyzing the report you can find out which devices are connected to the network, discover the open ports
+and services and detect vulnerabilities.
 
+To run a simple scan in your local network you can run the command:
 
+```shell
+nmap 192.168.178.0/24
+```
 
+After a while you will get a report with all found devices and its open ports. An entry consists the following
+information:
+
+```shell
+Nmap scan report for 192.168.178.2
+Host is up (0.0088s latency).
+Not shown: 998 closed tcp ports (conn-refused)
+PORT    STATE SERVICE
+22/tcp  open  ssh
+80/tcp  open  http
+```
+
+If you want to act more quietly, you can add the `-sS` arguments. These arguments change the analysis behaviour of nmap,
+so that it doesn't complete the 3-way-handshake. It seems for the destination device, that send SYN/ACK signal bit to
+the source device get lost. Run the command `sudo nmap -sS 192.168.178.2` and you will get a similar result as above.
+The disadvantage of this method is, that it is slower and could deliver less information about a device.
+
+To get more information about the device you're scanning you could add the `-O` argument. This triggers nmap to figure
+out what kind of OS is the other device running on. Run `sudo nmap -O 192.168.178.2` and check if the response matches
+to your expectations. In my case it did:
+
+```shell
+Nmap scan report for my-device (192.168.178.2)
+Host is up (0.0055s latency).
+Not shown: 998 closed tcp ports (reset)
+PORT     STATE    SERVICE
+22/tcp   open     ssh
+80/tcp   open     http
+MAC Address: 00:5A:10:B8:98:67 (Asus)
+Device type: general purpose
+Running: Linux 4.X|5.X
+OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5
+OS details: Linux 4.15 - 5.6
+Network Distance: 1 hop
+
+OS detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 4.33 seconds
+```
+
+To get a full list of devices in the network in a fast manner you could use the `-sL` argument. The response contains a
+list of names and the IP addresses in parentheses if it could find a device. Otherwise, the it returns the IP only:
+
+```shell
+...
+Nmap scan report for my-device (192.168.178.2) # finding
+Nmap scan report for 192.168.178.161 # nothing
+...
+```
+
+Another feature of `nmap` is to figure out the version of the service which is running on the device. It doesn't work
+for all services, but it does a good work for that one it knows. This is an example response of `scanme.nmap.org`: 
+
+```shell
+nmap -sV scanme.nmap.org
+Starting Nmap 7.93 ( https://nmap.org ) at 2023-03-20 12:39 CET
+Nmap scan report for scanme.nmap.org (45.33.32.156)
+Host is up (0.17s latency).
+Other addresses for scanme.nmap.org (not scanned): 2600:3c01::f03c:91ff:fe18:bb2f
+Not shown: 992 closed tcp ports (conn-refused)
+PORT      STATE    SERVICE      VERSION
+22/tcp    open     ssh          OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.13 (Ubuntu Linux; protocol 2.0)
+53/tcp    open     domain?
+80/tcp    open     http         Apache httpd 2.4.7 ((Ubuntu))
+135/tcp   filtered msrpc
+139/tcp   filtered netbios-ssn
+445/tcp   filtered microsoft-ds
+9929/tcp  open     nping-echo   Nping echo
+31337/tcp open     tcpwrapped
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 46.99 seconds
+```
+
+In this way you could use the nmap to find outdated versions of a service and update them accordingly. 
