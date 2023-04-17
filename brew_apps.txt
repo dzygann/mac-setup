@@ -1,3 +1,5 @@
+maven
+groovy
 angular-cli
 ant
 awscli
